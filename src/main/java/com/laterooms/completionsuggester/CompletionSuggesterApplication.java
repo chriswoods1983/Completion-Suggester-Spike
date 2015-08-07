@@ -17,7 +17,7 @@ public class CompletionSuggesterApplication extends Application<CompletionSugges
 
     @Override
     public String getName() {
-        return "hello-world";
+        return "Completion Suggester";
     }
 
     @Override
@@ -28,10 +28,7 @@ public class CompletionSuggesterApplication extends Application<CompletionSugges
     @Override
     public void run(CompletionSuggesterConfiguration configuration,
                     Environment environment) {
-        final CompletionSuggesterResource resource = new CompletionSuggesterResource(
-                configuration.getTemplate(),
-                configuration.getDefaultName()
-        );
+        final CompletionSuggesterResource resource = new CompletionSuggesterResource();
 
         final TemplateHealthCheck healthCheck =
                 new TemplateHealthCheck(configuration.getTemplate());

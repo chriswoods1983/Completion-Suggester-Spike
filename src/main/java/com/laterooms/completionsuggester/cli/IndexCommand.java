@@ -40,8 +40,13 @@ public class IndexCommand extends ConfiguredCommand<CompletionSuggesterConfigura
 
         Document document2 = new Document();
         Field field2 = new TextField("Text", "Mansfield", Field.Store.YES);
-        field2.setBoost(8);
+        field2.setBoost(4);
         document2.add(field2);
+
+        Document document3 = new Document();
+        Field field3 = new TextField("Text", "Manston", Field.Store.YES);
+        field3.setBoost(6);
+        document3.add(field3);
 
         IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
 
@@ -52,6 +57,7 @@ public class IndexCommand extends ConfiguredCommand<CompletionSuggesterConfigura
 
         indexWriter.addDocument(document1);
         indexWriter.addDocument(document2);
+        indexWriter.addDocument(document3);
 
         indexWriter.close();
         directory.close();
