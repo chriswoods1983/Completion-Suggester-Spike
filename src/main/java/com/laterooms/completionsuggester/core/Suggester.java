@@ -29,7 +29,7 @@ public class Suggester {
         Directory directory = FSDirectory.open(new File("/tmp/").toPath());
 
         IndexReader indexReader = DirectoryReader.open(directory);
-        Dictionary dictionary = new DocumentDictionary(indexReader, "Text","Text");
+        Dictionary dictionary = new DocumentDictionary(indexReader, "Text","Weight");
 
         FuzzySuggester fuzzySuggester = new FuzzySuggester(new StandardAnalyzer());
 

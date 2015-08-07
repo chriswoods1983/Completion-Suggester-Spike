@@ -7,6 +7,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -35,18 +36,21 @@ public class IndexCommand extends ConfiguredCommand<CompletionSuggesterConfigura
 
         Document document1 = new Document();
         Field field1 = new TextField("Text", "Manchester", Field.Store.YES);
-        field1.setBoost(10);
+        Field field1w = new LongField("Weight", 10L, Field.Store.YES);
         document1.add(field1);
+        document1.add(field1w);
 
         Document document2 = new Document();
         Field field2 = new TextField("Text", "Mansfield", Field.Store.YES);
-        field2.setBoost(4);
+        Field field2w = new LongField("Weight", 6L, Field.Store.YES);
         document2.add(field2);
+        document2.add(field2w);
 
         Document document3 = new Document();
         Field field3 = new TextField("Text", "Manston", Field.Store.YES);
-        field3.setBoost(6);
+        Field field3w = new LongField("Weight", 8L, Field.Store.YES);
         document3.add(field3);
+        document3.add(field3w);
 
         IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
 
