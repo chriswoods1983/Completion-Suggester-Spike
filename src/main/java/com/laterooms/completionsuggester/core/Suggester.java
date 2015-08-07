@@ -2,11 +2,15 @@ package com.laterooms.completionsuggester.core;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.search.spell.Dictionary;
+import org.apache.lucene.search.suggest.DocumentDictionary;
 import org.apache.lucene.search.suggest.Lookup;
 import org.apache.lucene.search.suggest.analyzing.AnalyzingInfixSuggester;
 
+import org.apache.lucene.search.suggest.analyzing.FuzzySuggester;
 import org.apache.lucene.store.*;
-import org.apache.lucene.util.BytesRef;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,22 +26,17 @@ public class Suggester {
     public List<Lookup.LookupResult> findBy(String text) throws IOException {
 
 
-        Directory directory = FSDirectory.open(new File("/Users/cwoods/index").toPath());
+        Directory directory = FSDirectory.open(new File("/tmp/").toPath());
 
-        AnalyzingInfixSuggester infixSuggester = new AnalyzingInfixSuggester(directory, new StandardAnalyzer(), new StandardAnalyzer(), 2, true, false,true);
+        IndexReader indexReader = DirectoryReader.open(directory);
+        Dictionary dictionary = new DocumentDictionary(indexReader, "Text","Text");
 
-        infixSuggester.add(new BytesRef("Manchester"), null,10,null);
-        infixSuggester.add(new BytesRef("Manchester City Center"), null,8,null);
-        infixSuggester.add(new BytesRef("Mansfield"), null, 4, null);
-        infixSuggester.add(new BytesRef("Leeds"), null, 9, null);
-        infixSuggester.add(new BytesRef("London"), null,12,null);
+        FuzzySuggester fuzzySuggester = new FuzzySuggester(new StandardAnalyzer());
 
-        infixSuggester.commit();
+        fuzzySuggester.build(dictionary);
 
+        List<Lookup.LookupResult> results = fuzzySuggester.lookup(text,null,false,5);
 
-
-        List<Lookup.LookupResult> results = infixSuggester.lookup(text,3,false,true);
-        infixSuggester.close();
         directory.close();
 
         return results;

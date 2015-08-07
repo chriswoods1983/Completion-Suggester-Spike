@@ -15,6 +15,18 @@ public class CompletionSuggesterConfiguration extends Configuration {
     private String defaultName = "Stranger";
 
     @JsonProperty
+    public String getIndexLocation() {
+        return indexLocation;
+    }
+    @JsonProperty
+    public void setIndexLocation(String indexLocation) {
+        this.indexLocation = indexLocation;
+    }
+
+    @NotEmpty
+    private String indexLocation;
+
+    @JsonProperty
     public String getTemplate() {
         return template;
     }

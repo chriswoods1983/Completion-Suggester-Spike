@@ -1,5 +1,6 @@
 package com.laterooms.completionsuggester;
 
+import com.laterooms.completionsuggester.cli.IndexCommand;
 import com.laterooms.completionsuggester.health.TemplateHealthCheck;
 import com.laterooms.completionsuggester.resources.CompletionSuggesterResource;
 import io.dropwizard.Application;
@@ -20,8 +21,8 @@ public class CompletionSuggesterApplication extends Application<CompletionSugges
     }
 
     @Override
-    public void initialize(Bootstrap<CompletionSuggesterConfiguration> bootstrap) {
-        // nothing to do yet
+     public void initialize(Bootstrap<CompletionSuggesterConfiguration> bootstrap) {
+        bootstrap.addCommand(new IndexCommand());
     }
 
     @Override
