@@ -1,4 +1,4 @@
-package me.uk.chriswoods.dropwizzardtemplate.health;
+package com.laterooms.completionsuggester.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

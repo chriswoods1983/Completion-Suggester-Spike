@@ -1,4 +1,4 @@
-package me.uk.chriswoods.dropwizzardtemplate.core;
+package com.laterooms.completionsuggester.core;
 
 /**
  * Created by chris on 31/07/15.

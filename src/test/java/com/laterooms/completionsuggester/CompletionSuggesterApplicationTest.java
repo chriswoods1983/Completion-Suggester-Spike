@@ -1,9 +1,9 @@
-package me.uk.chriswoods.dropwizzardtemplate;
+package com.laterooms.completionsuggester;
 
 import com.codahale.metrics.health.HealthCheckRegistry;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Environment;
-import me.uk.chriswoods.dropwizzardtemplate.resources.DropwizzardTemplateResource;
+import com.laterooms.completionsuggester.resources.CompletionSuggesterResource;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
@@ -11,12 +11,12 @@ import static org.mockito.Mockito.*;
 /**
  * Created by chris on 31/07/15.
  */
-public class DropwizzardTemplateApplicationTest{
+public class CompletionSuggesterApplicationTest {
     private final Environment environment = mock(Environment.class);
     private final JerseyEnvironment jersey = mock(JerseyEnvironment.class);
     private final HealthCheckRegistry healthCheckRegistry = mock(HealthCheckRegistry.class);
-    private final DropwizzardTemplateApplication application = new DropwizzardTemplateApplication();
-    private final DropwizzardTemplateConfiguration config = new DropwizzardTemplateConfiguration();
+    private final CompletionSuggesterApplication application = new CompletionSuggesterApplication();
+    private final CompletionSuggesterConfiguration config = new CompletionSuggesterConfiguration();
 
     @Before
     public void setup() throws Exception {
@@ -30,6 +30,6 @@ public class DropwizzardTemplateApplicationTest{
     public void buildsAThingResource() throws Exception {
         application.run(config, environment);
 
-        verify(jersey).register(isA(DropwizzardTemplateResource.class));
+        verify(jersey).register(isA(CompletionSuggesterResource.class));
     }
 }

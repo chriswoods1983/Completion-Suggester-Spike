@@ -1,4 +1,4 @@
-package me.uk.chriswoods.dropwizzardtemplate;
+package com.laterooms.completionsuggester;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Created by chris on 31/07/15.
  */
-public class DropwizzardTemplateConfiguration extends Configuration {
+public class CompletionSuggesterConfiguration extends Configuration {
     @NotEmpty
     private String template;
 

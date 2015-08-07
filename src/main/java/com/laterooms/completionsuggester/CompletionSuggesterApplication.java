@@ -1,17 +1,17 @@
-package me.uk.chriswoods.dropwizzardtemplate;
+package com.laterooms.completionsuggester;
 
+import com.laterooms.completionsuggester.health.TemplateHealthCheck;
+import com.laterooms.completionsuggester.resources.CompletionSuggesterResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import me.uk.chriswoods.dropwizzardtemplate.health.TemplateHealthCheck;
-import me.uk.chriswoods.dropwizzardtemplate.resources.DropwizzardTemplateResource;
 
 /**
  * Created by chris on 31/07/15.
  */
-public class DropwizzardTemplateApplication extends Application<DropwizzardTemplateConfiguration> {
+public class CompletionSuggesterApplication extends Application<CompletionSuggesterConfiguration> {
     public static void main(String[] args) throws Exception {
-        new DropwizzardTemplateApplication().run(args);
+        new CompletionSuggesterApplication().run(args);
     }
 
     @Override
@@ -20,14 +20,14 @@ public class DropwizzardTemplateApplication extends Application<DropwizzardTempl
     }
 
     @Override
-    public void initialize(Bootstrap<DropwizzardTemplateConfiguration> bootstrap) {
+    public void initialize(Bootstrap<CompletionSuggesterConfiguration> bootstrap) {
         // nothing to do yet
     }
 
     @Override
-    public void run(DropwizzardTemplateConfiguration configuration,
+    public void run(CompletionSuggesterConfiguration configuration,
                     Environment environment) {
-        final DropwizzardTemplateResource resource = new DropwizzardTemplateResource(
+        final CompletionSuggesterResource resource = new CompletionSuggesterResource(
                 configuration.getTemplate(),
                 configuration.getDefaultName()
         );
