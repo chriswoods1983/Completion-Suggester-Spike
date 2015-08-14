@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Suggestions {
-    private List<String> suggestions;
+    private List<Suggestion> suggestions;
 
     public Suggestions() {
         // Jackson deserialization
     }
 
-    public Suggestions(List<String> suggestions) {
+    public Suggestions(List<Suggestion> suggestions) {
         this.suggestions = suggestions;
     }
 
     @JsonProperty("d")
-    public List<String> getData() {
+    public List<Suggestion> getData() {
         return suggestions;
     }
 }

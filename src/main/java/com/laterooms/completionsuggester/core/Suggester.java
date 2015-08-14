@@ -7,7 +7,6 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.spell.Dictionary;
 import org.apache.lucene.search.suggest.DocumentDictionary;
 import org.apache.lucene.search.suggest.Lookup;
-import org.apache.lucene.search.suggest.analyzing.AnalyzingInfixSuggester;
 
 import org.apache.lucene.search.suggest.analyzing.FuzzySuggester;
 import org.apache.lucene.store.*;
@@ -26,10 +25,10 @@ public class Suggester {
     public List<Lookup.LookupResult> findBy(String text) throws IOException {
 
 
-        Directory directory = FSDirectory.open(new File("/tmp/").toPath());
+        Directory directory = FSDirectory.open(new File("/Users/cwoods/index").toPath());
 
         IndexReader indexReader = DirectoryReader.open(directory);
-        Dictionary dictionary = new DocumentDictionary(indexReader, "Text","Weight");
+        Dictionary dictionary = new DocumentDictionary(indexReader, "Text","Weight","Payload");
 
         FuzzySuggester fuzzySuggester = new FuzzySuggester(new StandardAnalyzer());
 

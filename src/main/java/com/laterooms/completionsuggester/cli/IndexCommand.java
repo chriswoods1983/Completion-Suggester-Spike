@@ -37,8 +37,10 @@ public class IndexCommand extends ConfiguredCommand<CompletionSuggesterConfigura
         Document document1 = new Document();
         Field field1 = new TextField("Text", "Manchester", Field.Store.YES);
         Field field1w = new LongField("Weight", 10L, Field.Store.YES);
+        Field field1p = new TextField("Payload", "k16296355_manchester-hotels.aspx", Field.Store.YES);
         document1.add(field1);
         document1.add(field1w);
+        document1.add(field1p);
 
         Document document2 = new Document();
         Field field2 = new TextField("Text", "Mansfield", Field.Store.YES);

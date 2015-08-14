@@ -5,6 +5,7 @@ package com.laterooms.completionsuggester.resources;
  */
 
 import com.codahale.metrics.annotation.Timed;
+import com.laterooms.completionsuggester.core.Suggestion;
 import com.laterooms.completionsuggester.core.Suggestions;
 import com.laterooms.completionsuggester.core.Suggester;
 import org.apache.lucene.search.suggest.Lookup;
@@ -40,16 +41,21 @@ public class CompletionSuggesterResource {
         }
 
 
-        List<String> suggestions = new ArrayList<String>();
+
 
         assert l != null;
 
+        List<Suggestion> suggestions = new ArrayList<Suggestion>();
+
         for (Lookup.LookupResult result : l) {
-            suggestions.add(result.key.toString());
+            List<String> payload = new ArrayList<String>();
+            payload.add(result.payload.utf8ToString());
+            Suggestion suggestion = new Suggestion(result.key.toString(), payload);
+            suggestions.add(suggestion);
 
         }
 
 
-        return new Suggestions(suggestions);
+        return  new Suggestions(suggestions);
     }
 }
